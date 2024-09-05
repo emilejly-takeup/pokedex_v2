@@ -1,6 +1,11 @@
-import React from "react";
+import PokemonData from "../interfaces/PokemonData";
 
-export function PokemonCard({ pokemon, isCurrentIndex }) {
+interface Props {
+  pokemon: PokemonData;
+  isCurrentIndex: boolean;
+}
+
+export function PokemonCard({ pokemon, isCurrentIndex }: Props) {
   if (!pokemon) {
     return <p>Chargement...</p>;
   }
@@ -9,7 +14,7 @@ export function PokemonCard({ pokemon, isCurrentIndex }) {
     <div className={`p-5 w-72 h-[500px] mx-auto border-2 border-gray-600 rounded-lg ${isCurrentIndex ? "" : "opacity-70"}`}>
       {/* Noms */}
       <h2 className="text-2xl font-bold">{pokemon.name?.fr || "Inconnu"}</h2>
-      <div className="mt-1 flex justify-around">
+      <div className="mt-1 flex justify-around text-sm">
         <h4>🇬🇧 {pokemon.name?.en || "Inconnu"}</h4>
         <h4>🇯🇵 {pokemon.name?.jp || "Inconnu"}</h4>
       </div>
@@ -38,31 +43,6 @@ export function PokemonCard({ pokemon, isCurrentIndex }) {
           <p>???</p>
         )}
       </div>
-
-      {/* Stats */}
-      {/* <div>
-        <h3>Stats</h3>
-        <p>PV: {pokemon.stats?.hp ?? "N/A"}</p>
-        <p>Attaque: {pokemon.stats?.atk ?? "N/A"}</p>
-        <p>Défense: {pokemon.stats?.def ?? "N/A"}</p>
-        <p>Attaque Spéciale: {pokemon.stats?.spe_atk ?? "N/A"}</p>
-        <p>Défense Spéciale: {pokemon.stats?.spe_def ?? "N/A"}</p>
-        <p>Vitesse: {pokemon.stats?.vit ?? "N/A"}</p>
-      </div> */}
-
-      {/* Evolutions */}
-      {/* <div>
-        <h3>Évolution suivante :</h3>
-        {pokemon.evolution?.next?.length > 0 ? (
-          pokemon.evolution.next.map((evo, index) => (
-            <p key={index}>
-              {evo.name || "Inconnu"} - {evo.condition || "Inconnue"}
-            </p>
-          ))
-        ) : (
-          <p>Aucune</p>
-        )}
-      </div> */}
     </div>
   );
 }

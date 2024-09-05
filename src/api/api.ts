@@ -1,7 +1,8 @@
 import axios from "axios";
+import PokemonData from "../interfaces/PokemonData";
 
 // Fonction fetch + stockage dans localStorage
-export const fetchData = async () => {
+export const fetchData = async (): Promise<PokemonData[]> => {
   // Vérifie si le cache contient les datas
   const cachedData = localStorage.getItem("pokemonData");
 
@@ -29,7 +30,7 @@ export const fetchData = async () => {
       // Retourne les datas récupérées depuis l'API
       return response.data;
     } catch (error) {
-      console.error("Une erreur est survenue pendant la récupération des données depuis l'API", error);
+      console.error("Une erreur est survenue pendant la récupération des données depuis l'API: ", error);
       throw error;
     }
   }
