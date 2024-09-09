@@ -5,7 +5,7 @@ import { NavigationButton } from "./components/NavigationButton";
 import PokemonData from "./interfaces/PokemonData";
 
 export default function App() {
-  const [data, setData] = useState<PokemonData[] | []>([]);
+  const [data, setData] = useState<PokemonData[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [shinyState, setShinyState] = useState<boolean[]>([]);
 
@@ -44,12 +44,12 @@ export default function App() {
   // Configuration des cartes
   const CARDSCONFIG = [
     { indexOffset: -3, isHidden: true, isShinyOverride: true },
-    { indexOffset: -3, isHidden: true, isShinyOverride: false },
+    { indexOffset: -3, isHidden: true },
     { indexOffset: -2, isHidden: false },
     { indexOffset: -1, isHidden: false },
     { indexOffset: 1, isHidden: false },
     { indexOffset: 2, isHidden: false },
-    { indexOffset: 3, isHidden: true, isShinyOverride: false },
+    { indexOffset: 3, isHidden: true },
     { indexOffset: 3, isHidden: true, isShinyOverride: true },
   ];
 
