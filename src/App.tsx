@@ -36,7 +36,9 @@ export default function App() {
     return (currentIndex + wishedIndex + data.length) % data.length;
   }
 
-  // Configuration du slicer de la liste de configuration des cartes
+  // Configuration du slicer de la liste de configuration des cartes.
+  // Permet de déterminer la coupure entre les cartes affichées...
+  // ...à gauche de la carte principale et celles affichées à droite.
   const sliceAtIndex = 4;
 
   // Configuration des cartes
