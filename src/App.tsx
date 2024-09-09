@@ -16,7 +16,7 @@ export default function App() {
         setShinyState(new Array(data.length).fill(false));
       })
       .catch((error: Error) => {
-        console.error("There was an error!", error);
+        console.error("Erreur pendant le fetch API du useEffect() : ", error);
       });
   }, []);
 
@@ -36,7 +36,10 @@ export default function App() {
     return (currentIndex + wishedIndex + data.length) % data.length;
   }
 
-  // Configuration des cartes (cette lise DOIT être paire)
+  // Configuration du slicer de la liste de configuration des cartes
+  const sliceAtIndex = 4;
+
+  // Configuration des cartes
   const CARDSCONFIG = [
     { indexOffset: -3, isHidden: true, isShinyOverride: true },
     { indexOffset: -3, isHidden: true, isShinyOverride: false },
@@ -53,7 +56,7 @@ export default function App() {
       {data && data.length > 0 ? (
         <div className="flex items-center gap-8">
           {/* Rendu des cartes de gauche */}
-          {CARDSCONFIG.slice(0, CARDSCONFIG.length / 2).map(({ indexOffset, isHidden, isShinyOverride }, id) => {
+          {CARDSCONFIG.slice(0, sliceAtIndex).map(({ indexOffset, isHidden, isShinyOverride }, id) => {
             const resolvedIndex = resolveIndex(indexOffset);
             const isShiny = isShinyOverride !== undefined ? isShinyOverride : shinyState[resolvedIndex];
             return (
@@ -80,12 +83,12 @@ export default function App() {
           <NavigationButton text="→" onClick={handleNext} />
 
           {/* Rendu des cartes de droite */}
-          {CARDSCONFIG.slice(CARDSCONFIG.length / 2).map(({ indexOffset, isHidden, isShinyOverride }, id) => {
+          {CARDSCONFIG.slice(sliceAtIndex).map(({ indexOffset, isHidden, isShinyOverride }, id) => {
             const resolvedIndex = resolveIndex(indexOffset);
             const isShiny = isShinyOverride !== undefined ? isShinyOverride : shinyState[resolvedIndex];
             return (
               <PokemonCard
-                key={id + CARDSCONFIG.length / 2}
+                key={id + sliceAtIndex}
                 isCurrentIndex={false}
                 pokemon={data[resolvedIndex]}
                 isShiny={isShiny}
