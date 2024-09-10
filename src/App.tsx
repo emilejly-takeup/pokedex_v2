@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "./api/api";
-import { PokemonCard } from "./components/PokemonCard";
 import { NavigationButton } from "./components/NavigationButton";
+import { PokemonCard } from "./components/PokemonCard";
 import PokemonData from "./interfaces/PokemonData";
 
 export default function App() {
@@ -20,13 +20,13 @@ export default function App() {
       });
   }, []);
 
-  const handlePrev = () => {
-    data && setCurrentIndex((currentIndex) => (currentIndex === 0 ? data.length - 1 : currentIndex - 1));
-  };
+  function handlePrev() {
+    return data && setCurrentIndex((currentIndex) => (currentIndex === 0 ? data.length - 1 : currentIndex - 1));
+  }
 
-  const handleNext = () => {
-    data && setCurrentIndex((currentIndex) => (currentIndex === data.length - 1 ? 0 : currentIndex + 1));
-  };
+  function handleNext() {
+    return data && setCurrentIndex((currentIndex) => (currentIndex === data.length - 1 ? 0 : currentIndex + 1));
+  }
 
   const toggleShiny = (index: number) => {
     setShinyState((prevShinyState) => prevShinyState.map((isShiny, i) => (i === index ? !isShiny : isShiny)));
